@@ -1,0 +1,94 @@
+rm(list=setdiff(ls(), keepers))
+#{
+rstudioapi::getActiveDocumentContext
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+source("libs.r")
+
+## current ("c_") cvo reports
+{
+c_shst_url <- "https://www.usbr.gov/mp/cvo/vungvari/shafln.pdf"
+c_rawtext  <- pdf_text(c_shst_url)
+c_shst_mon_yr  <- str_match(c_rawtext, "CALIFORNIA\r\n(.*?)FULL")  #https://stackoverflow.com/questions/39086400/extracting-a-string-between-other-two-strings-in-r
+c_shst_mon_yr <- c_shst_mon_yr[,2] %>% trimws() %>% as.yearmon() 
+c_shst_mon_yr_mmyy <- c_shst_mon_yr  %>%  format( "%m%y")
+c_shst_mon  <- c_shst_mon_yr  %>%  format( "%m")
+c_shst_yr <- c_shst_mon_yr  %>%  format( "%y")
+
+## previous ("p_") cvo report url (to look back last month at beginning of new month)
+p_shst_mon_yr <- c_shst_mon_yr - 1/12
+p_shst_mon_yr_mmyy <- p_shst_mon_yr %>% format( "%m%y")
+p_shst_urlbase <- "https://www.usbr.gov/mp/cvo/vungvari/shafln" #0719.pdf
+p_shst_url <- paste0(p_shst_urlbase, p_shst_mon_yr_mmyy, ".pdf")
+p_rawtext  <- pdf_text(p_shst_url)
+p_shst_mon  <- p_shst_mon_yr  %>%  format( "%m")
+p_shst_yr   <- p_shst_mon_yr  %>%  format( "%y")
+
+### scrape current report ###
+start <- "\n    1" #beware lengths vary between usbr pages, eg "\n  1"
+end <- "\n  TOTALS"
+c_shst_fnf <- read.table(text = substring(c_rawtext, regexpr(start, c_rawtext), regexpr(end, c_rawtext)))
+c_shst_fnf
+rm(c_rawtext)
+}
+
+{
+# rename current report columns #
+  c_shst_fnf  <- c_shst_fnf %>% rename("monthday" = !!names(.[1]),
+                                                             "Britton" = !!names(.[2]),
+                                                             "McCloudDivRes" = !!names(.[3]),
+                                                             "IronCanyon" = !!names(.[4]),
+                                                             "Pit6" = !!names(.[5]),
+                                                             "Pit7" = !!names(.[6]) ,
+                                                             "Shasta_upstream_stor" = !!names(.[7]),
+                                                             "Shasta_upstream_dlystorchange" = !!names(.[8]),
+                                                             "Shasta_observedinflowchange_meandaily" = !!names(.[9]),
+                                                             "Shasta_observedinflow_meandaily" = !!names(.[10]),
+                                                             "Shasta_natriver_fnf" = !!names(.[11]),
+                                                             "Shasta_natriver_WYaccum" = !!names(.[12]))
+  
+c_shst_fnf <- c_shst_fnf %>% transmute(monthday, Shasta_natriver_fnf)
+  
+  }
+head(c_shst_fnf)
+
+c_shst_fnf <- c_shst_fnf %>% mutate(date = paste0(c_shst_mon,"/", monthday,"/", c_shst_yr)) %>%
+                           transmute(chps_date = mdy(date) + 1, shst_fnf = Shasta_natriver_fnf) 
+head(c_shst_fnf)
+
+### scrape previous report ###
+
+p_shst_fnf <- read.table(text = substring(p_rawtext, regexpr(start, p_rawtext), regexpr(end, p_rawtext)))
+
+
+
+{
+
+# rename previous report columns #
+  p_shst_fnf  <- p_shst_fnf %>% rename("monthday" = !!names(.[1]),
+                                       "Britton" = !!names(.[2]),
+                                       "McCloudDivRes" = !!names(.[3]),
+                                       "IronCanyon" = !!names(.[4]),
+                                       "Pit6" = !!names(.[5]),
+                                       "Pit7" = !!names(.[6]) ,
+                                       "Shasta_upstream_stor" = !!names(.[7]),
+                                       "Shasta_upstream_dlystorchange" = !!names(.[8]),
+                                       "Shasta_observedinflowchange_meandaily" = !!names(.[9]),
+                                       "Shasta_observedinflow_meandaily" = !!names(.[10]),
+                                       "Shasta_natriver_fnf" = !!names(.[11]),
+                                       "Shasta_natriver_WYaccum" = !!names(.[12]))
+  
+  p_shst_fnf <- p_shst_fnf %>% transmute(monthday, Shasta_natriver_fnf)
+  
+}
+head(p_shst_fnf)
+
+p_shst_fnf <- p_shst_fnf %>% mutate(date = paste0(p_shst_mon,"/", monthday,"/", p_shst_yr)) %>%
+  transmute(chps_date = mdy(date) + 1, shst_fnf = Shasta_natriver_fnf) 
+head(p_shst_fnf)
+
+shst_fnf <- rbind(c_shst_fnf, p_shst_fnf) %>% arrange(desc(chps_date))
+shst_fnf <- head(shst_fnf, daysback)
+shst_fnf
+
+rm(list=setdiff(ls(), keepers))
+#}
