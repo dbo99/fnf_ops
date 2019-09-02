@@ -118,7 +118,7 @@ df$ordc1 <- gsub(",", "", df$ordc1)
 
 df
 df <- df %>% mutate_if(is.character, as.numeric)
-df <- df %>% transmute(chps_date, cegc1, whsc1, shdc1, cmpc1, frac1, pftc1, ordc1)
+df <- df %>% transmute(chps_date, cegc1, whsc1, shdc1, ordc1, cmpc1, frac1, pftc1)
 
 df
 rm(list=setdiff(ls(), keepers))
