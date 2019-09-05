@@ -57,12 +57,12 @@ nwsid$cfs <- sprintf(paste0("%0", max(nchar(nwsid$cfs)), "s"), nwsid$cfs)
 tail(nwsid)
 
 nwsid <- nwsid %>% mutate(nwsid = paste0(nwsid, "      "),
-                                  day = paste0(" ", day, "   "))
+                                  day = paste0(" ", day, "  "))
 
 head(nwsid)
 tail(nwsid)
 
 
 
-write.table(nwsid, "nwsid.dat", quote = FALSE, row.names = FALSE)
+write.table(nwsid, "ctic1_hrly.dat", quote = FALSE, row.names = FALSE)
 
