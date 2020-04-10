@@ -5,7 +5,7 @@
   #library(sf)
  # library(rgdal)
   library(shiny)
-  #library(shinyjs)
+  library(shinyjs)
   #library(plotly)
   #library(shinydashboard)
   library(rvest)
@@ -16,4 +16,5 @@
  # library(htmlwidgets)
   library(pdftools)
   library(zoo)
+ # library(DT)
 }

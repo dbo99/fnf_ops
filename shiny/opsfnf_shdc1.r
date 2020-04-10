@@ -1,13 +1,14 @@
 rm(list=setdiff(ls(), keepers))
 #{
 
-source("libs.r")
+#source("libs.r")
 
 ## current ("c_") cvo reports
-{
+#{
 c_shst_url <- "https://www.usbr.gov/mp/cvo/vungvari/shafln.pdf"
 c_rawtext  <- pdf_text(c_shst_url)
 c_shst_mon_yr  <- str_match(c_rawtext, "CALIFORNIA\r\n(.*?)FULL")  #https://stackoverflow.com/questions/39086400/extracting-a-string-between-other-two-strings-in-r
+if (anyNA(c_shst_mon_yr)) {c_shst_mon_yr  <- str_match(c_rawtext, "CALIFORNIA\n(.*?)FULL") } #PCs have 
 c_shst_mon_yr <- c_shst_mon_yr[,2] %>% trimws() %>% as.yearmon() 
 c_shst_mon_yr_mmyy <- c_shst_mon_yr  %>%  format( "%m%y")
 c_shst_mon  <- c_shst_mon_yr  %>%  format( "%m")
@@ -23,12 +24,25 @@ p_shst_mon  <- p_shst_mon_yr  %>%  format( "%m")
 p_shst_yr   <- p_shst_mon_yr  %>%  format( "%y")
 
 ### scrape current report ###
-start <- "\n    1" #beware lengths vary between usbr pages, eg "\n  1"
+start1 <- "\n  1"  #trinity tables can start with either
+start2 <- "\n   1" #trinity tables can start with either
+start3 <- "\n    1"
+start4 <- "\n     1"
+
 end <- "\n  TOTALS"
-c_shst_fnf <- read.table(text = substring(c_rawtext, regexpr(start, c_rawtext), regexpr(end, c_rawtext)))
+       
+
+c_shst_fnf <- cliptrintable2(c_rawtext, start1, end)  
 c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start2, end) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start3, end) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start4, end) }
+c_shst_fnf
+
 rm(c_rawtext)
-}
+#}
 
 {
 # rename current report columns #
@@ -55,10 +69,15 @@ c_shst_fnf <- c_shst_fnf %>% mutate(date = paste0(c_shst_mon,"/", monthday,"/", 
 head(c_shst_fnf)
 
 ### scrape previous report ###
-
-p_shst_fnf <- read.table(text = substring(p_rawtext, regexpr(start, p_rawtext), regexpr(end, p_rawtext)))
-
-
+end <- "\n TOTALS" #one less space than above
+p_shst_fnf <- cliptrintable2(p_rawtext, start1, end)  
+p_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start2, end) }
+p_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start3, end) }
+p_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start4, end) }
+p_shst_fnf
 
 {
 
@@ -88,6 +107,7 @@ head(p_shst_fnf)
 shst_fnf <- rbind(c_shst_fnf, p_shst_fnf) %>% arrange(desc(chps_date))
 shst_fnf <- head(shst_fnf, daysback)
 shst_fnf
-
+shst_fnf$shst_fnf <- gsub(",", "", shst_fnf$shst_fnf)
+shst_fnf <- shst_fnf %>% mutate(shst_fnf = as.integer(shst_fnf))
 rm(list=setdiff(ls(), keepers))
 #}
