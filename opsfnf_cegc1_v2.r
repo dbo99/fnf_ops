@@ -1,10 +1,11 @@
 #rm(list = ls()) 
 
-
+#daysback <- 10
 #{
 #rm(list=setdiff(ls(), keepers))
 
 source("libs.r")
+source("cntrl.r")
 
 ## current ("c_") cvo reports
 #{
@@ -31,11 +32,7 @@ p_trin_yr <- p_trin_mon_yr  %>%  format( "%y")
 
 
 
-cliptrintable <- function(rawtext, start, end) {
-  read.table(text = substring(rawtext, regexpr(start, rawtext), 
-                              regexpr(end, rawtext))) }
-  
-cliptrintable2 <- possibly(cliptrintable, otherwise = NA)
+
 ### scrape current report ###
 
 end <- "\nTOTALS"
@@ -43,12 +40,21 @@ end <- "\nTOTALS"
 #                                          regexpr(end, c_rawtext)))
 
 
-start1 <- "\n  1"  #trinity tables can start with either
-start2 <- "\n   1" #trinity tables can start with either
+start1 <- "\n  1 "  #trinity tables can start with either
+start2 <- "\n   1 " #trinity tables can start with either
+start3 <- "\n    1 "
+start4 <- "\n     1 "
+   
 c_trin_fnf <- cliptrintable2(c_rawtext, start1, end)  
+c_trin_fnf
 if (is.na(c_trin_fnf)) {c_trin_fnf <- cliptrintable2(c_rawtext, start2, end) }
-  
-  
+c_trin_fnf
+if (is.na(c_trin_fnf)) {c_trin_fnf <- cliptrintable2(c_rawtext, start3, end) }
+c_trin_fnf
+if (is.na(c_trin_fnf)) {c_trin_fnf <- cliptrintable2(c_rawtext, start4, end) }
+c_trin_fnf
+
+c_trin_fnf
 
 
 c_trin_fnf
@@ -75,11 +81,24 @@ head(c_trin_fnf)
 
 c_trin_fnf <- c_trin_fnf %>% mutate(date = paste0(c_trin_mon,"/", monthday,"/", c_trin_yr)) %>%
                            transmute(chps_date = mdy(date) + 1, trin_fnf)
-head(c_trin_fnf)
+as_tibble(c_trin_fnf)
 
 ### scrape previous report ###
-p_trin_fnf <- cliptrintable2(p_rawtext, start1, end)  
+
+p_trin_fnf <- cliptrintable2(p_rawtext, start4, end)  
+p_trin_fnf
+if (is.na(p_trin_fnf)) {p_trin_fnf <- cliptrintable2(p_rawtext, start3, end) }
+p_trin_fnf
 if (is.na(p_trin_fnf)) {p_trin_fnf <- cliptrintable2(p_rawtext, start2, end) }
+p_trin_fnf
+if (is.na(p_trin_fnf)) {p_trin_fnf <- cliptrintable2(p_rawtext, start1, end) }
+p_trin_fnf
+
+
+
+p_trin_fnf
+## fix here to accomodate n  /1 spacing
+#if (is.na(p_trin_fnf)) {p_trin_fnf <- cliptrintable2(p_rawtext, start2, end) }
 
 
 
@@ -111,3 +130,4 @@ trin_fnf
 
 #rm(list=setdiff(ls(), keepers))
 #}
+
