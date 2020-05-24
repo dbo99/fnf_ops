@@ -17,4 +17,6 @@
   library(pdftools)
   library(zoo)
  # library(DT)
+ # library(rsconnect)
+  library(RCurl)
 }

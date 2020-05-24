@@ -5,6 +5,7 @@
 #rm(list=setdiff(ls(), keepers))
 
 source("libs.r")
+source("cntrl.r")
 
 ## current ("c_") cvo reports
 #{
@@ -39,10 +40,10 @@ end <- "\nTOTALS"
 #                                          regexpr(end, c_rawtext)))
 
 
-start1 <- "\n  1"  #trinity tables can start with either
-start2 <- "\n   1" #trinity tables can start with either
-start3 <- "\n    1"
-start4 <- "\n     1"
+start1 <- "\n  1 "  #trinity tables can start with either
+start2 <- "\n   1 " #trinity tables can start with either
+start3 <- "\n    1 "
+start4 <- "\n     1 "
    
 c_trin_fnf <- cliptrintable2(c_rawtext, start1, end)  
 c_trin_fnf

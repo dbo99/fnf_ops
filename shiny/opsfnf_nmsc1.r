@@ -8,7 +8,7 @@ rm(list=setdiff(ls(), keepers))
 ## old page
 
 
-c_monyr <- read_html('http://cdec.water.ca.gov/cgi-progs/reports.cur?s=fnf') %>%
+c_monyr <- read_html('https://cdec.water.ca.gov/cgi-progs/reports.cur?s=fnf') %>%
   html_nodes("h1") %>% html_text()
 c_monyr <- gsub("Daily Full Natural Flows for ", "", c_monyr)
 c_monyr <- as.yearmon(c_monyr)
@@ -20,7 +20,9 @@ c_yr
 ## java/css page
 
 # current month fnf
-c_fnf <-  readHTMLTable("http://cdec.water.ca.gov/reportapp/javareports?name=FNF", as.data.frame = TRUE)
+url <-  getURL("https://cdec.water.ca.gov/reportapp/javareports?name=FNF")
+c_fnf <-  readHTMLTable(url, as.data.frame = TRUE)
+#c_fnf <-  read_html("https://cdec.water.ca.gov/reportapp/javareports?name=FNF", as.data.frame = TRUE)
 
 #c_fnf_toptable <- c_fnf[[1]]
 c_fnf_bottable <- c_fnf[[2]]  #only need bott table for nm

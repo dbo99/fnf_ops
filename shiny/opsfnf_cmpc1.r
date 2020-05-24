@@ -5,7 +5,7 @@ source("libs.r")
 
 ## "today's report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -16,8 +16,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -33,7 +33,7 @@ moke_fnf_0
 
 ## yesterday's report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -44,8 +44,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -61,7 +61,7 @@ moke_fnf_1
 
 ## "two days ago report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -72,8 +72,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -89,7 +89,7 @@ moke_fnf_2
 
 ## "three days ago report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -100,8 +100,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -117,7 +117,7 @@ moke_fnf_3
 
 ## "four days ago report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -128,8 +128,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -145,7 +145,7 @@ moke_fnf_4
 
 ## "five days ago report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -156,8 +156,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 
@@ -173,7 +173,7 @@ moke_fnf_5
 
 ## "six days ago report" ## 
 
-page <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=SC7"
+page <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=SC7"
 coe_text <- html_text(html_node(read_html(page),".h2 , pre")) #.h2 & pre Id'd by SelectorGadget
 
 coe_text <- unlist(strsplit(coe_text,"\n"))
@@ -184,8 +184,8 @@ cfs_row
 fnf_value <- gsub("^.*\\.(.*)$","\\1",cfs_row)# Get the value after the last elipses
 fnf_value
 fnf_value <- gsub(" ","", fnf_value) %>% trimws()
-fnf_value <- gsub("-","", fnf_value)
-fnf_value <- gsub("NR",NA, fnf_value)
+#fnf_value <- gsub("-","", fnf_value)
+fnf_value <- gsub("-NR",NA, fnf_value)
 fnf_value
 
 

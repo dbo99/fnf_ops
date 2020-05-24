@@ -1,6 +1,6 @@
 
 
-
+#options(rsconnect.check.certificate = FALSE)
 #{
   source("libs.r")
   source("cntrl.r")
@@ -79,24 +79,24 @@ shinyApp(
                                                           <a target='_blank' href='https://www.usbr.gov/mp/cvo/vungvari/milfln.pdf'>frac1</a> 
                                                            <a target='_blank' href='https://www.usbr.gov/mp/cvo/current.html'>usbr_curr  </a> 
                                                           <a target='_blank' href='https://www.usbr.gov/mp/cvo/reports.html'>usbr_prev  </a> <br>
-                                                          <a target='_blank' href='http://cdec.water.ca.gov/reportapp/javareports?name=FNF'>ordc1/nmsc1/ndpc1(cdec_curr)</a> 
-                                                          <a target='_blank' href='http://cdec.water.ca.gov/reportapp/javareports?name=FNF.201907'> cdec_prev  </a>  <br>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=SC7'>cmpc1_0 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=SC7'>cmpc1_1 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=SC7'>cmpc1_2 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=SC7'>cmpc1_3  </a>
-                                                        <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=SC7'>cmpc1_4  </a>
-                                                        <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=SC7'>cmpc1_5  </a>
-                                                        <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=SC7'>cmpc1_6  </a> 
+                                                          <a target='_blank' href='https://cdec.water.ca.gov/reportapp/javareports?name=FNF'>ordc1/nmsc1/ndpc1(cdec_curr)</a> 
+                                                          #<a target='_blank' href='https://cdec.water.ca.gov/reportapp/javareports?name=FNF.201907'> cdec_prev  </a>  <br>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=SC7'>cmpc1_0 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=SC7'>cmpc1_1 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=SC7'>cmpc1_2 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=SC7'>cmpc1_3  </a>
+                                                        <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=SC7'>cmpc1_4  </a>
+                                                        <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=SC7'>cmpc1_5  </a>
+                                                        <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=SC7'>cmpc1_6  </a> 
 
 
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=COE'>pftc1_0 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=COE'>pftc1_1 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=COE'>pftc1_2 </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=COE'>pftc1_3  </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=COE'>pftc1_4  </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=COE'>pftc1_5  </a>
-                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=COE'>pftc1_6  </a> 
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=COE'>pftc1_0 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=COE'>pftc1_1 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=COE'>pftc1_2 </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=COE'>pftc1_3  </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=COE'>pftc1_4  </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=COE'>pftc1_5  </a>
+                                                         <a target='_blank' href='https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=COE'>pftc1_6  </a> 
 
 
                                                         <a target='_blank' href='http://www.spk-wc.usace.army.mil/reports/midnight.html'>usace_12am  </a> 

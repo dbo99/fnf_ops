@@ -24,21 +24,29 @@ p_shst_mon  <- p_shst_mon_yr  %>%  format( "%m")
 p_shst_yr   <- p_shst_mon_yr  %>%  format( "%y")
 
 ### scrape current report ###
-start1 <- "\n  1"  #trinity tables can start with either
-start2 <- "\n   1" #trinity tables can start with either
-start3 <- "\n    1"
-start4 <- "\n     1"
+start1 <- "\n  1 "  #trinity tables can start with either
+start2 <- "\n   1 " #trinity tables can start with either
+start3 <- "\n    1 "
+start4 <- "\n     1 "
 
-end <- "\n  TOTALS"
-       
+end1 <- "\n  TOTALS"
+end2 <- "\n TOTALS"       
 
 c_shst_fnf <- cliptrintable2(c_rawtext, start1, end)  
 c_shst_fnf
-if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start2, end) }
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start2, end1) }
 c_shst_fnf
-if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start3, end) }
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start3, end1) }
 c_shst_fnf
-if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start4, end) }
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start4, end1) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start1, end2) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start2, end2) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start3, end2) }
+c_shst_fnf
+if (is.na(c_shst_fnf)) {c_shst_fnf <- cliptrintable2(c_rawtext, start4, end2) }
 c_shst_fnf
 
 rm(c_rawtext)
@@ -69,15 +77,23 @@ c_shst_fnf <- c_shst_fnf %>% mutate(date = paste0(c_shst_mon,"/", monthday,"/", 
 head(c_shst_fnf)
 
 ### scrape previous report ###
-end <- "\n TOTALS" #one less space than above
-p_shst_fnf <- cliptrintable2(p_rawtext, start1, end)  
+#end1 <- "\n TOTALS" #one less space than above
+p_shst_fnf <- cliptrintable2(p_rawtext, start1, end1)  
 p_shst_fnf
-if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start2, end) }
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start2, end1) }
 p_shst_fnf
-if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start3, end) }
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start3, end1) }
 p_shst_fnf
-if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start4, end) }
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start4, end1) }
 p_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start1, end2) }
+c_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start2, end2) }
+c_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start3, end2) }
+c_shst_fnf
+if (is.na(p_shst_fnf)) {p_shst_fnf <- cliptrintable2(p_rawtext, start4, end2) }
+c_shst_fnf
 
 {
 

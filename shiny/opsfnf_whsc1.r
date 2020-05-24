@@ -25,10 +25,10 @@ p_whis_yr   <- p_whis_mon_yr  %>%  format( "%y")
 }
 ### scrape current report ###
 
-start1 <- "\n  1"  #trinity tables can start with either
-start2 <- "\n   1" #trinity tables can start with either
-start3 <- "\n    1"
-start4 <- "\n     1"
+start1 <- "\n  1 "  #trinity tables can start with either
+start2 <- "\n   1 " #trinity tables can start with either
+start3 <- "\n    1 "
+start4 <- "\n     1 "
 end <- "\n  TOTALS"
 #c_whis_fnf <- read.table(text = substring(c_rawtext, regexpr(start, c_rawtext), regexpr(end, c_rawtext)))
 #c_whis_fnf
