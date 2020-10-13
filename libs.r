@@ -1,11 +1,12 @@
-{
+#{
   library(tidyverse)
   library(lubridate)
+  #library(purr)
   #library(gghighlight)
   #library(sf)
  # library(rgdal)
-  #library(shiny)
-  #library(shinyjs)
+  library(shiny)
+  library(shinyjs)
   #library(plotly)
   #library(shinydashboard)
   library(rvest)
@@ -16,4 +17,7 @@
  # library(htmlwidgets)
   library(pdftools)
   library(zoo)
-}
+ # library(DT)
+ # library(rsconnect)
+  library(RCurl)
+#}

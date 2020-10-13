@@ -1,12 +1,11 @@
 rm(list=setdiff(ls(), keepers))
 {
-rstudioapi::getActiveDocumentContext
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 source("libs.r")
 
  ## "today's report" ## 
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=0&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -37,7 +36,7 @@ head(pineflat_fnf_0)
  
 ## "yesterday's report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=1&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -63,7 +62,7 @@ head(pineflat_fnf_1)
 
 ## 2 days' ago report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=2&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -89,7 +88,7 @@ head(pineflat_fnf_2)
 
 ## 3 days' ago report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=3&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -115,7 +114,7 @@ head(pineflat_fnf_3)
 
 ## 4 days' ago report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=4&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -141,7 +140,7 @@ head(pineflat_fnf_4)
 
 ## 5 days' ago report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=5&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))
@@ -167,7 +166,7 @@ head(pineflat_fnf_5)
 
 ## 6 days' ago report" ##  
 
-coe_text <- "http://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=COE"
+coe_text <- "https://www.spk-wc.usace.army.mil/fcgi-bin/midnight.py?days=6&report=COE"
 coe_text <- html_text(html_node(read_html(coe_text),".h2 , pre"))
 value <- "Pine Flat Natural Flow (.*?) Below N. F. nr Trimmer"
 value <- regmatches(coe_text,regexec(value, coe_text))

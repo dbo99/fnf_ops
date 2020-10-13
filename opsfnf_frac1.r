@@ -30,15 +30,25 @@ start1 <- "\n  1 "  #trinity tables can start with either
 start2 <- "\n   1 " #trinity tables can start with either
 start3 <- "\n    1 "
 start4 <- "\n     1 "
-end <- "\n  TOTALS"
+end1 <- "\n  TOTALS"
+end2 <- "\n TOTALS"
 
-c_mill_fnf <- cliptrintable2(c_rawtext, start1, end)  
+c_mill_fnf <- cliptrintable2(c_rawtext, start1, end1)  
 c_mill_fnf
-if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start2, end) }
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start2, end1) }
 c_mill_fnf
-if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start3, end) }
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start3, end1) }
 c_mill_fnf
-if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start4, end) }
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start4, end1) }
+c_mill_fnf
+
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start1, end2) }
+c_mill_fnf
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start2, end2) }
+c_mill_fnf
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start3, end2) }
+c_mill_fnf
+if (is.na(c_mill_fnf)) {c_mill_fnf <- cliptrintable2(c_rawtext, start4, end2) }
 c_mill_fnf
 
 
@@ -72,17 +82,22 @@ c_mill_fnf <- c_mill_fnf %>% mutate(date = paste0(c_mil_mon,"/", monthday,"/", c
 head(c_mill_fnf)
 
 ### scrape previous report ###
+p_mill_fnf <- cliptrintable2(c_rawtext, start1, end1)  
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start2, end1) }
+p_mill_fnf
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start3, end1) }
+p_mill_fnf
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start4, end1) }
+p_mill_fnf
 
-end <- "\n TOTALS"
-p_mill_fnf <- cliptrintable2(p_rawtext, start1, end)  
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start1, end2) }
 p_mill_fnf
-if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start2, end) }
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start2, end2) }
 p_mill_fnf
-if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start3, end) }
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start3, end2) }
 p_mill_fnf
-if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start4, end) }
-p_mill_fnf
-rm(start1, start2, start3, start4, end, p_rawtext)
+if (is.na(p_mill_fnf)) {p_mill_fnf <- cliptrintable2(p_rawtext, start4, end2) }
+c_mill_fnf
 
 
 {
@@ -121,7 +136,7 @@ mill_fnf$mill_fnf <- gsub(",", "", mill_fnf$mill_fnf)
 mill_fnf <- mill_fnf %>% mutate(mill_fnf = as.integer(mill_fnf))
 as_tibble(mill_fnf)
 
-rm(start1, start2, start3, start4, end, c_rawtext)
+rm(start1, start2, start3, start4, end1,end2, c_rawtext)
 
 rm(list=setdiff(ls(), keepers))
 #}

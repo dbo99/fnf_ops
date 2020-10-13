@@ -1,31 +1,18 @@
+rm(list = ls()) 
 
-
-
-rm(list = ls())
-
-{
- 
-keepers <- c("mill_fnf", "trin_fnf", "whis_fnf", "shst_fnf", 
-               "pnft_fnf", "moke_fnf", "orov_fnf", "nmel_fnf", 
-            "nwdp_fnf",   "keepers", "daysback", "df")
-rm(list=setdiff(ls(), keepers))
-rstudioapi::getActiveDocumentContext
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-daysback <- 14
-}
-
-{
-source("opsfnf_cegc1.r")
+#{
+source("libs.r")
+source("cntrl.r")
+source("opsfnf_cegc1_v2.r")
 source("opsfnf_whsc1.r")
 source("opsfnf_shdc1.r")
-source("opsfnf_frac1.r")
 source("opsfnf_pftc1.r")
 source("opsfnf_cmpc1.r")
-source("opsfnf_ordc1.r")
-source("opsfnf_nmsc1.r")
-source("opsfnf_ndpc1.r")
-}
+source("opsfnf_ordc1.r") #cdec
+source("opsfnf_nmsc1.r") #cdec
+source("opsfnf_ndpc1.r") #cdec
+source("opsfnf_frac1.r")
+
 
 today <- Sys.Date()
 chps_date <- seq(today, by = "-1 day", length.out = daysback) 
@@ -64,4 +51,6 @@ df <- df %>% transmute(chps_date, cegc1, whsc1, shdc1, ordc1, cmpc1,
                        nmsc1, ndpc1, frac1, pftc1)
 
 df
-rm(list=setdiff(ls(), keepers))
+#df <- df %>% mutate(chps_date = ymd(chps_date))
+#}
+as_tibble(df)
